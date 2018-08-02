@@ -21,12 +21,12 @@ public class MyConsumer2 implements RocketMqConsumerListener<String> {
     private static final Logger LOGGER = LoggerFactory.getLogger(MyConsumer2.class);
 
     @Override
-    public void consume(String message) {
+    public boolean consume(String message) {
         LOGGER.info("==========================consumer start=====================");
 
         if(Objects.isNull(message)){
             //接收到空消息，也表明此次消费成功
-            return;
+            return true;
         }
 
         /**
@@ -46,5 +46,6 @@ public class MyConsumer2 implements RocketMqConsumerListener<String> {
         LOGGER.info("age: {}", user.getAge());
 
         LOGGER.info("==========================consumer end=====================");
+        return true;
     }
 }
